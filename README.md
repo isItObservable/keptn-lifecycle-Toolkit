@@ -3,7 +3,7 @@
 
 ## Episode : What is Keptn LifeCycle Toolkit
 This repository contains the files utilized during the tutorial presented in the dedicated IsItObservable episode related to Keptn LifeCycle Toolkit.
-<p align="center"><img src="/image/keptn_logo.jpg" width="40%" alt="Keptn Logo" /></p>
+<p align="center"><img src="/image/keptn-logo.jpg" width="40%" alt="Keptn Logo" /></p>
 
 What you will learn
 * How to use the [Keptn LifeCycle Toolkit](https://github.com/keptn/lifecycle-toolkit)
