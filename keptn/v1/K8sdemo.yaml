@@ -662,7 +662,7 @@ spec:
         sidecar.opentelemetry.io/inject: "true"
         app.kubernetes.io/part-of: otel-demo-applicaton
         app.kubernetes.io/name: checkoutservice
-        keptn.sh/pre-deployment-tasks: productcatalogservice-check,kafka-check,cartservice-check,example-currencyservice,payment-check,example-shippingservice
+        keptn.sh/pre-deployment-tasks: productcatalogservice-check,kafka-check,cartservice-check,currency-check,payment-check,shipping-check
     spec:
       containers:
         - name: checkoutservice
@@ -753,7 +753,6 @@ spec:
           image: 'ghcr.io/open-telemetry/demo:v1.2.1-currencyservice'
           imagePullPolicy: Always
           ports:
-
             - containerPort: 8080
               name: service
           env:
@@ -814,7 +813,7 @@ spec:
         app.kubernetes.io/name: example
         app.kubernetes.io/instance: example
         app.kubernetes.io/component: emailservice
-          app.kubernetes.io/version: "1.2.1"
+        app.kubernetes.io/version: "1.2.1"
       annotations:
         sidecar.opentelemetry.io/inject: "true"
         app.kubernetes.io/part-of: otel-demo-applicaton
@@ -825,7 +824,6 @@ spec:
           image: 'otel/demo:v1.2.1-emailservice'
           imagePullPolicy: Always
           ports:
-
             - containerPort: 8080
               name: service
           env:
@@ -902,7 +900,6 @@ spec:
           image: 'otel/demo:v1.2.1-featureflagservice'
           imagePullPolicy: Always
           ports:
-
             - containerPort: 50053
               name: grpc
             - containerPort: 8081
@@ -980,7 +977,6 @@ spec:
           image: 'postgres:14'
           imagePullPolicy: Always
           ports:
-
             - containerPort: 5432
               name: postgres
           env:
@@ -1128,7 +1124,6 @@ spec:
           image: 'ghcr.io/open-telemetry/demo:v1.2.1-frontend'
           imagePullPolicy: Always
           ports:
-
             - containerPort: 8080
               name: service
           env:
@@ -1217,7 +1212,6 @@ spec:
           image: 'ghcr.io/open-telemetry/demo:v1.2.1-frontendproxy'
           imagePullPolicy: Always
           ports:
-
             - containerPort: 8080
               name: service
           env:
@@ -1366,7 +1360,6 @@ spec:
           image: 'ghcr.io/open-telemetry/demo:v1.2.1-loadgenerator'
           imagePullPolicy: Always
           ports:
-
             - containerPort: 8089
               name: service
           env:
@@ -1452,7 +1445,6 @@ spec:
           image: 'otel/demo:v1.2.1-paymentservice'
           imagePullPolicy: Always
           ports:
-
             - containerPort: 8080
               name: service
           env:
@@ -1522,7 +1514,6 @@ spec:
           image: 'otel/demo:v1.2.1-productcatalogservice'
           imagePullPolicy: Always
           ports:
-
             - containerPort: 8080
               name: service
           env:
@@ -1594,7 +1585,6 @@ spec:
           image: 'ghcr.io/open-telemetry/demo:v1.2.1-quoteservice'
           imagePullPolicy: Always
           ports:
-
             - containerPort: 8080
               name: service
           env:
@@ -1670,14 +1660,13 @@ spec:
         sidecar.opentelemetry.io/inject: "true"
         app.kubernetes.io/part-of: otel-demo-applicaton
         app.kubernetes.io/name: recommendationservice
-        keptn.sh/pre-deployment-tasks: featureflag-check,example-productcatalogservice
+        keptn.sh/pre-deployment-tasks: featureflag-check,productcatalogservice-check
     spec:
       containers:
         - name: recommendationservice
           image: 'otel/demo:v1.2.1-recommendationservice'
           imagePullPolicy: Always
           ports:
-
             - containerPort: 8080
               name: service
           env:
@@ -1754,7 +1743,6 @@ spec:
           image: 'redis:alpine'
           imagePullPolicy: Always
           ports:
-
             - containerPort: 6379
               name: redis
           env:
@@ -1824,7 +1812,6 @@ spec:
           image: 'ghcr.io/open-telemetry/demo:v1.2.1-shippingservice'
           imagePullPolicy: Always
           ports:
-
             - containerPort: 8080
               name: service
           env:

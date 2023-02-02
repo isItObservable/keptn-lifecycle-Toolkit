@@ -33,6 +33,7 @@ spec:
               scrape_interval: 5s
               static_configs:
                 - targets: ['klc-controller-manager-metrics-service.keptn-lifecycle-toolkit-system.svc:2222']
+
     processors:
       batch:
         send_batch_max_size: 1000
@@ -58,6 +59,9 @@ spec:
             type: trace_state
             trace_state: { key: tracetest, values: ["true"] }
 
+      spanmetrics:
+        metrics_exporter: prometheus
+
       k8sattributes:
         auth_type: serviceAccount
         passthrough: false
@@ -81,17 +85,24 @@ spec:
         headers:
           Authorization: "Api-Token DT_TOKEN_TO_REPLACE"
 
+      prometheus:
+        endpoint: 0.0.0.0:9090
 
+      otlp/spanmetrics:
+        endpoint: "localhost:55677"
+        tls:
+          insecure: true
 
-
-      service:
+    service:
       pipelines:
         traces:
           receivers: [otlp]
-          processors: [memory_limiter,k8sattributes,batch]
+          processors: [memory_limiter,k8sattributes,spanmetrics,batch]
           exporters: [otlphttp]
         metrics:
           receivers: [otlp,prometheus]
           processors: [memory_limiter,k8sattributes,batch]
-          exporters: [otlphttp]
-
+          exporters: [otlphttp,prometheus]
+        metrics/spanmetrics:
+          receivers: [otlp/spanmetrics]
+          exporters: [otlp/spanmetrics]

@@ -9,7 +9,7 @@ spec:
         import { Client } from "https://deno.land/x/postgres@v0.17.0/mod.ts";
         let config;
         try {
-          "postgres://ffs:ffs@example-ffspostgres:5432/ffs";
+          config="postgres://ffs:ffs@example-ffspostgres:5432/ffs";
 
           const client = new Client(config);
           await client.connect();

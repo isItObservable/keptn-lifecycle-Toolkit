@@ -81,8 +81,10 @@ echo 'Found external IP: '$IP
 
 ### Update the ip of the ip adress for the ingres
 #TODO to update this part to use the dns entry /ELB/ALB
-sed -i "s,IP_TO_REPLACE,$IP," kubernetes-manifests/K8sdemo.yaml
+sed -i "s,IP_TO_REPLACE,$IP," keptn/v1/K8sdemo.yaml
+sed -i "s,IP_TO_REPLACE,$IP," keptn/v2/K8sdemo.yaml
 sed -i "s,IP_TO_REPLACE,$IP," grafana/ingress.yaml
+
 ### Depploy Prometheus
 
 #### Deploy the cert-manager
@@ -101,8 +103,6 @@ CLUSTERID=$(kubectl get namespace kube-system -o jsonpath='{.metadata.uid}')
 sed -i "s,CLUSTER_ID_TOREPLACE,$CLUSTERID," kubernetes-manifests/openTelemetry-sidecar.yaml
 sed -i "s,CLUSTER_NAME_TO_REPLACE,$CLUSTERNAME," kubernetes-manifests/openTelemetry-sidecar.yaml
 
-
-
 #Deploy the OpenTelemetry Collector
 echo "Deploying Otel Collector"
 kubectl apply -f kubernetes-manifests/rbac.yaml
@@ -118,7 +118,7 @@ helm repo update
 helm install prometheus prometheus-community/kube-prometheus-stack  --set grafana.sidecar.dashboards.enabled=true
 kubectl wait pod --namespace default -l "release=prometheus" --for=condition=Ready --timeout=2m
 PROMETHEUS_SERVER=$(kubectl get svc -l app=kube-prometheus-stack-prometheus -o jsonpath="{.items[0].metadata.name}")
-sed -i "s,PROMETHEUS_SERVER_TO_REPLACE,$PROMETHEUS_SERVER," keptn/provider.yaml
+sed -i "s,PROMETHEUS_SERVER_TO_REPLACE,$PROMETHEUS_SERVER," keptn/v2/provider.yaml
 
 PASSWORD_GRAFANA=$(kubectl get secret --namespace default prometheus-grafana -o jsonpath="{.data.admin-password}" | base64 --decode)
 USER_GRAFANA=$(kubectl get secret --namespace default prometheus-grafana -o jsonpath="{.data.admin-user}" | base64 --decode)

@@ -44,8 +44,7 @@ gcloud services enable monitoring.googleapis.com \
 ```shell
 ZONE=europe-west3-a
 NAME=isitobservable-keptn-lifecycle-tookit
-gcloud container clusters create "${NAME}" \
- --zone ${ZONE} --machine-type=e2-medium --num-nodes=3 --disk-type "pd-standard" --disk-size "10"
+gcloud container clusters create "${NAME}" --zone ${ZONE} --machine-type=e2-medium --num-nodes=3 
 ```
 
 
@@ -80,11 +79,7 @@ chmod 777 deployment.sh
 ./deployment.sh  --clustername "${NAME}" --dturl "${DT_TENANT_URL}" --dttoken "${DATA_INGEST_TOKEN}"
 ```
 
-### 4. Deploy Keptn 
-```shell
-kubectl apply -f https://github.com/keptn/lifecycle-toolkit/releases/download/v0.5.0/manifest.yaml
-```
-### 5. Modify Keptn LifeCycle Toolkit
+### 4. Modify Keptn LifeCycle Toolkit
 We will change the otel collector url define in the KLS in 2 deployments :
 
 #### Update Deployment klc-controller-manager
@@ -105,18 +100,18 @@ kubectl apply -f keptn/grafana-dashboard-keptn-workloads.yaml
 kubectl apply -f keptn/grafana_dashboard-keptn-application.yaml
 ```
 
-### 6. Deploy the Otel-demo Application
+### 5. Deploy the Otel-demo Application
+#### the version 1.2.1
 ```shell
 kubectl create ns otel-demo
-kubectl create keptn/application.yaml
+kubectl apply -f kkeptn/v1/application.yaml -n otel-demo
 kubectl apply -f kubernetes-manifests/openTelemetry-sidecar.yaml -n otel-demo
 kubectl annotate ns otel-demo  keptn.sh/lifecycle-toolkit="enabled"
-kubectl apply -f keptn/application.yaml
 kubectl apply -f keptn/keptn-predeployment_adservice.yaml -n otel-demo
-kubectl apply -f keptn-predeployment_cartservice.yaml -n otel-demo
+kubectl apply -f keptn/keptn-predeployment_cartservice.yaml -n otel-demo
 kubectl apply -f keptn/keptn-predeployment_checkoutservice.yaml -n otel-demo
 kubectl apply -f keptn/keptn-predeployment_currency.yaml -n otel-demo
-kubectl apply -f keptn/keptn-predeployment_currency.yaml -n otel-demo
+kubectl apply -f keptn/keptn-predeployment_featureflag.yaml -n otel-demo
 kubectl apply -f keptn/keptn-predeployment_frontend.yaml -n otel-demo
 kubectl apply -f keptn/keptn-predeployment_kafka.yaml -n otel-demo
 kubectl apply -f keptn/keptn-predeployment_paymentservice.yaml -n otel-demo
@@ -125,10 +120,26 @@ kubectl apply -f keptn/keptn-predeployment_productcatalogserice.yaml -n otel-dem
 kubectl apply -f keptn/keptn-predeployment_recommendation.yaml  -n otel-demo
 kubectl apply -f keptn/keptn-predeployment_redis.yaml -n otel-demo
 kubectl apply -f keptn/keptn-predeployment_shipping.yaml -n otel-demo
+kubectl apply -f keptn/pre-deployment-eval.yaml -n otel-demo
+kubectl apply -f keptn/v1/K8sdemo.yaml -n otel-demo
 ```
-
-
-
+#### Let's have a look at the workload instances 
+```shell
+kubectl get keptnworkloadinstance -n otel-demo
+```
+if we look at the pod running we will see the pods handling are various tasks
+```shell
+kubectl get pods -n otel-demo
+```
+#### the version 1.2.2
+```shell
+ubectl apply -f kkeptn/v2/application.yaml -n otel-demo
+kubectl apply -f keptn/v2/keptn-postdeployment_http.yaml -n otel-demo
+kubectl apply -f keptn/v2/post-deployment-eval.yaml -n otel-demo
+kubectl apply -f keptn/v2/pre-deployment-eval.yaml -n otel-demo
+kubectl apply -f keptn/v2/provider.yaml -n otel-demo
+kubectl apply -f keptn/v2/K8sdemo.yaml -n otel-demo
+```
 
 
 

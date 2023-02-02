@@ -2,6 +2,6 @@ apiVersion: lifecycle.keptn.sh/v1alpha2
 kind: KeptnEvaluationProvider
 metadata:
   name: prometheus
-  namespace: otel-demo-provider
+  namespace: otel-demo
 spec:
   targetServer: "http://PROMETHEUS_SERVER_TO_REPLACE.default.svc.cluster.local:9090"

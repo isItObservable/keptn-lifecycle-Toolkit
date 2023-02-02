@@ -1,0 +1,46 @@
+apiVersion: lifecycle.keptn.sh/v1alpha2
+kind: KeptnApp
+metadata:
+  name: otel-demo-applicaton
+  namespace: otel-demo
+spec:
+  version: "1.2.1"
+  workloads:
+    - name: accountingservice
+      version: 1.2.1
+    - name: adservice
+      version: 1.2.1
+    - name: cartservice
+      version: 1.2.1
+    - name: checkoutservice
+      version: 1.2.1
+    - name: currencyservice
+      version: 1.2.1
+    - name: shippingservice
+      version: 1.2.1
+    - name: emailservice
+      version: 1.2.1
+    - name: redis
+      version: 1.2.1
+    - name: recommendationservice
+      version: 1.2.1
+    - name: quoteservice
+      version: 1.2.1
+    - name: productcatalogservice
+      version: 1.2.1
+    - name: paymentservice
+      version: 1.2.1
+    - name: loadgenerator
+      version: 1.2.1
+    - name: kafka
+      version: 1.2.1
+    - name: frontendproxy
+      version: 1.2.1
+    - name: frontend
+      version: 1.2.1
+    - name: frauddetectionservice
+      version: 1.2.1
+    - name: ffspostgres
+      version: 1.2.1
+    - name: featureflagservice
+      version: 1.2.1

@@ -4,8 +4,19 @@ metadata:
   name: redis-check
 spec:
   function:
-    httpRef:
-      url: https://raw.githubusercontent.com/keptn/lifecycle-toolkit/main/functions-runtime/samples/ts/dns.ts
-    parameters:
-      map:
-        host: example-redis
+    inline:
+      code: |
+        import {
+            connect as redisConnect
+          } from 'https://deno.land/x/redis/mod.ts';
+        try {
+             const redisClient = await redisConnect({
+                hostname: 'example-redis',
+                port: 6379,
+               });
+             await redisClient.ping()
+        }
+        catch (error){
+                   console.error("Could not connect to the Redis")
+                   Deno.exit(1)
+        }
