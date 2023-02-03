@@ -104,7 +104,7 @@ kubectl apply -f keptn/grafana_dashboard-keptn-application.yaml
 #### the version 1.2.1
 ```shell
 kubectl create ns otel-demo
-kubectl apply -f kkeptn/v1/application.yaml -n otel-demo
+kubectl apply -f keptn/v1/application.yaml -n otel-demo
 kubectl apply -f kubernetes-manifests/openTelemetry-sidecar.yaml -n otel-demo
 kubectl annotate ns otel-demo  keptn.sh/lifecycle-toolkit="enabled"
 kubectl apply -f keptn/keptn-predeployment_adservice.yaml -n otel-demo
@@ -120,7 +120,6 @@ kubectl apply -f keptn/keptn-predeployment_productcatalogserice.yaml -n otel-dem
 kubectl apply -f keptn/keptn-predeployment_recommendation.yaml  -n otel-demo
 kubectl apply -f keptn/keptn-predeployment_redis.yaml -n otel-demo
 kubectl apply -f keptn/keptn-predeployment_shipping.yaml -n otel-demo
-kubectl apply -f keptn/pre-deployment-eval.yaml -n otel-demo
 kubectl apply -f keptn/v1/K8sdemo.yaml -n otel-demo
 ```
 #### Let's have a look at the workload instances 
@@ -133,14 +132,13 @@ kubectl get pods -n otel-demo
 ```
 #### the version 1.2.2
 ```shell
-ubectl apply -f kkeptn/v2/application.yaml -n otel-demo
+ubectl apply -f  keptn/v2/application.yaml -n otel-demo
 kubectl apply -f keptn/v2/keptn-postdeployment_http.yaml -n otel-demo
 kubectl apply -f keptn/v2/post-deployment-eval.yaml -n otel-demo
 kubectl apply -f keptn/v2/pre-deployment-eval.yaml -n otel-demo
 kubectl apply -f keptn/v2/provider.yaml -n otel-demo
 kubectl apply -f keptn/v2/K8sdemo.yaml -n otel-demo
 ```
-
 
 
 
