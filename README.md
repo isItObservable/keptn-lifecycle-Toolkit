@@ -13,7 +13,7 @@ This repository showcase the usage of Keptn LifeCycle Toolkit  with :
 * The OpenTelemetry Operator
 * Nginx ingress controller
 * Dynatrace
-* ArgoCD
+
 
 We will send all Telemetry data produced by the Otel-demo , and KLT to Dynatrace.
 
@@ -139,6 +139,7 @@ kubectl apply -f keptn/v2/pre-deployment-eval.yaml -n otel-demo
 kubectl apply -f keptn/v2/provider.yaml -n otel-demo
 kubectl apply -f keptn/v2/K8sdemo.yaml -n otel-demo
 ```
+
 
 
 

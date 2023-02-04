@@ -10,4 +10,4 @@ spec:
       operator.opentelemetry.io/collector-headless-service: Exists
   endpoints:
     - port: prometheus
-      interval: 10s
+      interval: 10sç

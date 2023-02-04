@@ -84,7 +84,7 @@ echo 'Found external IP: '$IP
 sed -i "s,IP_TO_REPLACE,$IP," keptn/v1/K8sdemo.yaml
 sed -i "s,IP_TO_REPLACE,$IP," keptn/v2/K8sdemo.yaml
 sed -i "s,IP_TO_REPLACE,$IP," grafana/ingress.yaml
-
+sed -i "s,IP_TO_REPLACE,$IP," argocd/argo-access-service.yaml
 ### Depploy Prometheus
 
 #### Deploy the cert-manager
